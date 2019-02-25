@@ -1,0 +1,18 @@
+[
+    {
+        "model": "services.servicetype",
+        "pk": 1,
+        "fields": {
+            "title": "construccion",
+            "description": "proyectos y mantenimiento de estructuras civiles"
+        }
+    },
+    {
+        "model": "services.servicetype",
+        "pk": 2,
+        "fields": {
+            "title": "electricidad",
+            "description": "proyectos y mantenimiento de instalaciones electricas"
+        }
+    }
+]
