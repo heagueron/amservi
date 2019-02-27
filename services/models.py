@@ -8,7 +8,27 @@ class ServiceType(models.Model):
     """
     title = models.CharField(max_length=120)
     description = models.CharField(max_length=360, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey('auth.User', related_name='services', on_delete=models.CASCADE) # new
+    
+    class Meta:
+        ordering = ('title',)
 
     def __str__(self):
         return self.title
 
+class Order(models.Model):
+    """
+    The instance of a service to be contracted and executed.
+    """
+    created = models.DateTimeField(auto_now_add=True)
+    service_type = models.ForeignKey('ServiceType', related_name='service_type', on_delete=models.CASCADE)
+    description = models.CharField(max_length=360, blank=True, null=True)
+    client = models.ForeignKey('auth.User', related_name='order_client', on_delete=models.CASCADE)
+    provider = models.ForeignKey('auth.User', related_name='order_provider', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('created',)
+
+    def __str__(self):
+        return self.description

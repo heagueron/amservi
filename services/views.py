@@ -1,18 +1,26 @@
 from rest_framework import generics
 
-from services.models import ServiceType
-from services.serializers import ServiceTypeSerializer
+from services.models import ServiceType, Order
+from services.serializers import ServiceTypeSerializer, OrderSerializer
 
 
-class ServiceTypeListCreate(generics.ListCreateAPIView):
+class ServiceTypeList(generics.ListCreateAPIView):
     queryset = ServiceType.objects.all()
     serializer_class = ServiceTypeSerializer
 
-"""
-By taking a look at the generic API views documentation we can 
-see that there’s a view for listing and creating models.
 
-It’s ListCreateAPIView.
+class ServiceTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ServiceType.objects.all()
+    serializer_class = ServiceTypeSerializer
 
-The ListCreateAPIView takes a queryset and a serializer_class.
-"""
+
+class OrderList(generics.ListCreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
